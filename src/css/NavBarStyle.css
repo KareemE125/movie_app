@@ -11,7 +11,7 @@ nav #logo{
 nav .nav-link , nav i{
     color: #fff;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: normal;
     transition: 0.3s;
 }
 

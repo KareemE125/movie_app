@@ -1,16 +1,18 @@
-:root{
-    --p-color: black;
-    --p-trans-color: rgba(0, 0, 0, 0.92);
-    --s-color: #FFC107;
-    --a-color: rgb(255,193,7);
-    --a-trans-color: rgba(255,193,7,0.5);
-  }
-  
-  body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  #loading{
-    margin-top: 15rem;
-    margin-bottom: 10rem;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;700&display=swap');
+
+:root {
+  --p-color: black;
+  --p-trans-color: rgba(0, 0, 0, 0.92);
+  --s-color: #FFC107;
+  --a-color: rgb(255, 193, 7);
+  --a-trans-color: rgba(255, 193, 7, 0.5);
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+#loading {
+  margin-top: 15rem;
+  margin-bottom: 10rem;
+}

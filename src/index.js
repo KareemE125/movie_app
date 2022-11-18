@@ -10,6 +10,10 @@ import './index.css';
 
 import App from './App';
 import Home from './components/Home'
+import Login from './components/Login'
+import Register from './components/Register'
+import MovieDetails from './components/MovieDetails'
+import NotFound from './components/NotFound'
 
 
 
@@ -17,7 +21,11 @@ import Home from './components/Home'
 
 const AppRouter = createBrowserRouter([
   {path: '/', element: <App/>, children:[
-    {index: true, element: <Home/>}
+    {index: true, element: <Home/>},
+    {path:'login', element: <Login/>},
+    {path:'register', element: <Register/>},
+    {path:'movie/:id', element: <MovieDetails/>},
+    {path:'*', element: <NotFound/>},
   ]}
 ]);
 

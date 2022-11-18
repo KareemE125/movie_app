@@ -1,0 +1,7 @@
+.spin-fast{
+    border-radius: 50%;
+    border: 2rem solid var(--s-color);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: fa-spin 0.8s infinite linear;
+}
