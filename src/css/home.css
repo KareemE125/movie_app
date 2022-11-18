@@ -1,0 +1,49 @@
+#Home {
+    background-color: var(--p-trans-color);
+}
+
+#Home .movie-card{
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#Home .movie-card:hover{
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 5px var(--a-trans-color);
+}
+
+#Home .movie-card:hover h5{
+    color: var(--a-color);
+}
+
+#Home h5{
+    color: white;
+    font-size: 18px;
+    background-color: var(--p-color);
+    padding: 5px 8px;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    transition: 0.3s;
+}
+
+@media screen and (max-width:462px) {
+    #Home h5{
+        font-size: 14px;
+    }
+}
+
+#Home h6{
+    font-size: 14px;
+    color: var(--a-color);
+    background-color: var(--p-trans-color);
+    position: absolute;
+    padding: 3px 8px;
+    top: 15px;
+    right: 15px;
+}

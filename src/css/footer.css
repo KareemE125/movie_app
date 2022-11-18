@@ -1,0 +1,40 @@
+
+#footer{
+    background-color: var(--p-color);
+    padding-top: 6rem;
+  }
+  
+  #footer h2{
+    margin-bottom: 1rem;
+  }
+  
+  #footer .container p{
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  #footer .icons{
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+  }
+  #footer .icons i{
+    transition: 0.3s;
+    font-size: 1.2rem;
+  }
+  
+  #footer .icons:hover{
+    background-color: white;
+  }
+  #footer .icons:hover i{
+    color: var(--p-color);
+  }
+  
+  #footer .footer2{
+    background-color: var(--p-dark-color);
+  }
