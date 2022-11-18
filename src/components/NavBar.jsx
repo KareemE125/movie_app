@@ -30,9 +30,9 @@ export default function NavBar()
 
   }, [])
 
-  return <nav className="navbar navbar-expand-lg">
+  return <nav className="navbar navbar-expand-lg  px-4">
     <div className="container-fluid">
-      <Link id='logo' className="navbar-brand" to='/'>Navbar</Link>
+      <Link id='logo' className="navbar-brand" to='/'>Movies125</Link>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i className='fa fa-bars'></i>
       </button>
@@ -46,7 +46,7 @@ export default function NavBar()
           </li>
         </ul>
         <form className="d-flex" role="search">
-          <input className="form-control me-2 bg-transparent text-white" type="search" placeholder="Search" aria-label="Search" />
+          <input className="form-control py-0 px-2 bg-transparent text-white" type="search" placeholder="Search" aria-label="Search" />
           <button className="btn" type="submit"><i className='fa fa-search'></i></button>
         </form>
       </div>

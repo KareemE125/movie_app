@@ -1,7 +1,7 @@
 :root{
     --p-color: black;
     --p-trans-color: rgba(0, 0, 0, 0.92);
-    --s-color: #E50914;
+    --s-color: #FFC107;
     --a-color: rgb(255,193,7);
     --a-trans-color: rgba(255,193,7,0.5);
   }
