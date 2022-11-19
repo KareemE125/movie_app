@@ -1,3 +1,7 @@
+#loading{
+    height: 50vh;
+}
+
 .spin-fast{
     border-radius: 50%;
     border: 2rem solid var(--s-color);

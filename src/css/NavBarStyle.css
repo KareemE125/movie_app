@@ -1,36 +1,61 @@
-nav{
+nav {
     background-color: var(--p-color);
 }
 
-nav #logo{
-   color: var(--s-color) !important;
-   font-size: 1.6rem;
-   font-weight: bold;
+nav #logo {
+    color: var(--s-color) !important;
+    font-size: 1.6rem;
+    font-weight: 900;
 }
 
-nav .nav-link , nav i{
+nav .nav-link,
+nav i {
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: normal;
     transition: 0.3s;
 }
 
-nav .nav-link:hover, nav i:hover, nav .nav-link.active{
+nav .nav-link:hover,
+nav i:hover,
+nav .nav-link.active {
     color: var(--s-color) !important;
 }
 
-nav button{
+nav .nav-link:focus {
+    color: white;
+}
+
+nav .dropdown-toggle:focus {
+    color: var(--s-color) !important;
+}
+
+nav button {
     border: none !important;
     outline: none !important;
 }
 
-nav input{
+nav input {
     outline: none !important;
     border: 1px solid white !important;
     box-shadow: none !important;
     transition: 0.3s !important;
 }
 
-nav input:focus, nav input:hover{
+nav input:focus,
+nav input:hover {
     border-color: var(--s-color) !important;
+}
+
+nav .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 5px;
+}
+
+nav .dropdown-menu .dropdown-item {
+    color: white;
+}
+
+nav .dropdown-menu .dropdown-item:hover {
+    background-color: var(--s-color);
 }

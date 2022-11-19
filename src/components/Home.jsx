@@ -26,7 +26,7 @@ export default function Home() {
     <div className="p-4">
       <div className="d-flex justify-content-center align-items-start flex-wrap">
         {
-          trendingList ?
+          trendingList?
             trendingList.map((movie, index) =>
               <div key={index} className='col-6 col-md-3 col-lg-2'>
                 <Link className='text-decoration-none' to={'/movie/' + movie.id}>
