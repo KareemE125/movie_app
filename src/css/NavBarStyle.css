@@ -11,7 +11,7 @@ nav #logo {
 nav .nav-link,
 nav i {
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: normal;
     transition: 0.3s;
 }
@@ -26,10 +26,6 @@ nav .nav-link:focus {
     color: white;
 }
 
-nav .dropdown-toggle:focus {
-    color: var(--s-color) !important;
-}
-
 nav button {
     border: none !important;
     outline: none !important;
@@ -40,6 +36,8 @@ nav input {
     border: 1px solid white !important;
     box-shadow: none !important;
     transition: 0.3s !important;
+    border-radius: 5px;
+    height: 2.1rem;
 }
 
 nav input:focus,

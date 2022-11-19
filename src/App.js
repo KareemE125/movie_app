@@ -1,15 +1,18 @@
 import './App.css';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import MovieDetails from './components/MovieDetails'
 import NotFound from './components/NotFound'
-import { useEffect, useState } from 'react';
 import RootLayout from './components/RootLayout';
 import Loading from './components/Loading';
+import Tvs from './components/Tvs';
+import People from './components/People';
+import Movies from './components/Movies';
 
 
 const LOGIN_ROUTE = (resetAppRouter)=> createBrowserRouter([
@@ -27,6 +30,9 @@ const HOME_ROUTE = (resetAppRouter)=> createBrowserRouter([
     path: '/', element: <RootLayout resetAppRouter={resetAppRouter}/>, children: [
       { index: true, element: <Home /> },
       { path: 'movie/:id', element: <MovieDetails /> },
+      { path: 'movies', element: <Movies /> },
+      { path: 'tvs', element: <Tvs /> },
+      { path: 'people', element: <People /> },
       { path: '*', element: <NotFound /> },
     ]
   }
