@@ -19,6 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     init();
+    console.log("HOME3")
   }, []);
 
 

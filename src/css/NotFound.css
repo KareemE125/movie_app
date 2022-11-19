@@ -1,0 +1,16 @@
+#notFound{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+#notFound p{
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+#notFound button:hover{
+    color: white;
+}

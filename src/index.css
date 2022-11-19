@@ -10,6 +10,8 @@
 
 body {
   font-family: 'Nunito', sans-serif;
+  background-color: var(--p-trans-color);
+  color: white;
 }
 
 #loading {

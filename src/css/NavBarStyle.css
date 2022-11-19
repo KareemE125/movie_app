@@ -45,15 +45,6 @@ nav input:hover {
     border-color: var(--s-color) !important;
 }
 
-nav .dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
-}
-
-nav .dropdown-menu .dropdown-item {
-    color: white;
-}
-
-nav .dropdown-menu .dropdown-item:hover {
-    background-color: var(--s-color);
+nav #logout.active{
+    color: white !important;
 }

@@ -1,7 +1,7 @@
 import './App.css';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 import Home from './components/Home'
 import Login from './components/Login'
@@ -17,15 +17,15 @@ import Movies from './components/Movies';
 
 const LOGIN_ROUTE = (resetAppRouter)=> createBrowserRouter([
   {
-    path: '/', element: <RootLayout resetAppRouter={resetAppRouter} />, children: [
+    path: '/', element: <RootLayout resetAppRouter={resetAppRouter}/>, children: [
       { index: true, element: <Login resetAppRouter={resetAppRouter} /> },
-      { path: 'register', element: <Register /> },
+      { path: 'register', element: <Register/> },
       { path: '*', element: <NotFound /> },
     ]
   }
 ]);
 
-const HOME_ROUTE = (resetAppRouter)=> createBrowserRouter([
+const HOME_ROUTE = (resetAppRouter, refreshNavBar)=> createBrowserRouter([
   {
     path: '/', element: <RootLayout resetAppRouter={resetAppRouter}/>, children: [
       { index: true, element: <Home /> },
@@ -40,9 +40,9 @@ const HOME_ROUTE = (resetAppRouter)=> createBrowserRouter([
 
 
 export default function App() {
-
+  
   let [AppRouter, setAppRouter] = useState( createBrowserRouter([{path: '/', element: <Loading/>}]) );
-
+  
 
   function resetAppRouter() 
   {
@@ -56,7 +56,10 @@ export default function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(()=>{ console.log("DID APP UPDATE");  },[AppRouter]);
+  useEffect(()=>{ 
+    console.log("DID APP UPDATE");  
+  },[AppRouter]);
+
 
   return <RouterProvider router={AppRouter} />;
 }
