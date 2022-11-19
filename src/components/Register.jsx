@@ -23,11 +23,11 @@ export default function Register() {
     }
 
     setIsLoading(true);
-    // calling sign in API instead of the promise
+    // calling signup API instead of the promise
     await new Promise((resolve)=>{ 
-      console.log("Signing in..."); 
+      console.log("Signing up..."); 
       setTimeout(()=>{
-        console.log("Signin Success");
+        console.log("Signup Success");
         resolve() 
       },1000);
     })

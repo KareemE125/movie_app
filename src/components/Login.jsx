@@ -24,7 +24,7 @@ export default function Login({ resetAppRouter }) {
     }
 
     setIsLoading(true);
-    // calling sign in API instead of the promise
+    // calling signin API instead of the promise
     await new Promise((resolve)=>{ 
       console.log("Loging in..."); 
       setTimeout(()=>{
