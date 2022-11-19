@@ -6,6 +6,7 @@
   --s-color: #FFC107;
   --a-color: rgb(255, 193, 7);
   --a-trans-color: rgba(255, 193, 7, 0.5);
+  --error-color: rgba(255, 0, 0, 0.5);
 }
 
 body {

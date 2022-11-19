@@ -1,0 +1,52 @@
+
+
+#register input{    
+    border-radius: 5px;
+    border-bottom: 2px solid #E8F0FE;
+    background-color: #E8F0FE;
+    color: var(--p-trans-color);
+    padding: 5px 10px;
+    box-shadow: 0 .5rem 1rem transparent !important;
+    transition: 0.3s !important;
+    outline: none !important;
+    border: none !important;
+}
+
+
+#register button{
+    width: fit-content;
+    min-width: 6rem;
+}
+
+#register button:hover{
+    color: white;
+}
+
+#register .valid{
+    border-bottom-color: green;
+    box-shadow: 0 .5rem 1rem rgba(0, 152, 43, 0.8)!important;
+}
+
+#register .non-valid{
+    border-bottom-color: red;
+    box-shadow: 0 .5rem 1rem rgba(156, 5, 5, 0.8)!important;
+}
+
+#register .validation-card{
+    background-color: var(--error-color);
+    color: white;
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: none;
+}
+
+#register .position-relative i{        
+    position: absolute;
+    right: 1rem;
+    top: 2.6rem;
+    display: none;
+}
+
+.bg-green{ color: green;}
+.bg-red{ color: red;}

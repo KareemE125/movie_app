@@ -24,12 +24,12 @@ export default function Home() {
 
 
   return <section id='Home'>
-    <div className="p-4">
+    <div className="py-4">
       <div className="d-flex justify-content-center align-items-start flex-wrap">
         {
           trendingList?
             trendingList.map((movie, index) =>
-              <div key={index} className='col-6 col-md-3 col-lg-2'>
+              <div key={index} className='col-sm-6 col-md-3 col-lg-2'>
                 <Link className='text-decoration-none' to={'/movie/' + movie.id}>
                   <div className=' movie-card m-2 position-relative' onClick={() => { console.log('Movie Clicked') }} >
                     <img className='img-fluid' src={"https://image.tmdb.org/t/p/w500/" + movie.poster} alt="" />

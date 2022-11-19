@@ -3,7 +3,8 @@ import Movie from '../models/Movie';
 
 const API_KEY = '596a075b908fc028f46b83b6af60c5dc';
 
-export default class MoviesApiHelper {
+export default class MoviesApiHelper 
+{
     static GENRES = new Map();
 
     static async getTrendings() {
