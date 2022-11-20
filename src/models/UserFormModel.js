@@ -10,11 +10,11 @@ export default class userFormModel {
 
     mapToJSON(){
         return{ 
-            "first_name":this.first_name, 
-            "last_name":this.last_name, 
-            "email":this.email, 
-            "password":this.password, 
-            "age":this.age 
+            first_name:this.first_name, 
+            last_name:this.last_name, 
+            email:this.email, 
+            password:this.password, 
+            age:this.age 
         };
     }
 }

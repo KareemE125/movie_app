@@ -3,19 +3,23 @@ import { useNavigate } from 'react-router-dom';
 
 
 import '../css/LoginStyle.css'
+import AuthApiHelper from '../Helpers/AuthApiHelper';
 
 
 export default function Login({ resetAppRouter }) {
 
-  let [userForm, setUserForm] = useState({"email":null,"password":null});
+  let [userForm, setUserForm] = useState({ "email": null, "password": null });
   let [isLoading, setIsLoading] = useState(false);
+  let [error, setError] = useState('');
   let navigate = useNavigate();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(validateInputs, []);
 
+  ///////////////........... Sumbmission & APIS ............////////////////
   async function submitForm(e) {
     e.preventDefault();
+    setError('');
 
     const inputs = document.querySelectorAll('#register input');
 
@@ -23,26 +27,28 @@ export default function Login({ resetAppRouter }) {
       if (!inputs[i].classList.contains('valid')) { nonValidHandler(inputs[i]); return; }
     }
 
-    setIsLoading(true);
-    // calling signin API instead of the promise
-    await new Promise((resolve)=>{ 
-      console.log("Loging in..."); 
-      setTimeout(()=>{
-        console.log("Login Success");
-        resolve() 
-      },1000);
-    })
-    setIsLoading(false);
-    
-    localStorage.setItem('token', '0');
-
-    // we navigate to '/' before resetting AppRouter
-    // so that after resetting we will have a vaild route '/' in the url to route to
-    navigate('/');
-
-    resetAppRouter();
+    await handleLoginRequest();
   }
 
+  async function handleLoginRequest() {
+    setIsLoading(true);
+    const response = await AuthApiHelper.login(userForm);
+
+    if (response.message === 'success') {
+      localStorage.setItem('token', response.token);
+
+      // we navigate to '/' before resetting AppRouter
+      // so that after resetting we will have a vaild route '/' in the url to route to
+      navigate('/');
+
+      resetAppRouter();
+    }
+    else { setError(response.message); }
+
+    setIsLoading(false);
+  }
+
+  ///////////////............... Validation ...............////////////////
   function validHandler(elem) {
     elem.classList.remove('non-valid');
     elem.classList.add('valid');
@@ -79,17 +85,18 @@ export default function Login({ resetAppRouter }) {
 
   }
 
+  ///////////////........... Update Input Values ...........////////////////
   function updateUserValues(e) {
     let updatedUserForm = { ...userForm };
     updatedUserForm[e.target.attributes.name.value] = e.target.value;
     setUserForm(updatedUserForm)
-    console.log(userForm)
   }
 
 
   return <section id='login'>
     <div className='col-lg-8 m-auto py-5'>
       <h2 className='fw-light'>Login</h2>
+      {error ? <div className="validation-card d-block">{error}</div> : null}
       <form className='my-4 d-flex flex-column' onSubmit={submitForm} onChange={updateUserValues}>
 
         <div className="position-relative mb-3">
