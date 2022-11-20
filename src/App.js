@@ -13,6 +13,7 @@ import Loading from './components/Loading';
 import Tvs from './components/Tvs';
 import People from './components/People';
 import Movies from './components/Movies';
+import Favorites from './components/Favorites';
 
 
 const LOGIN_ROUTE = (resetAppRouter)=> createBrowserRouter([
@@ -33,6 +34,7 @@ const HOME_ROUTE = (resetAppRouter, refreshNavBar)=> createBrowserRouter([
       { path: 'movies', element: <Movies /> },
       { path: 'tvs', element: <Tvs /> },
       { path: 'people', element: <People /> },
+      { path: 'favorites', element: <Favorites /> },
       { path: '*', element: <NotFound /> },
     ]
   }

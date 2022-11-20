@@ -40,6 +40,9 @@ export default function NavBar({ resetAppRouter }) {
             <li className="nav-item">
               <Link className="nav-link" to='/people'>People</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to='/favorites'>Favorites</Link>
+            </li>
           </ul> : null
         }
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
