@@ -1,13 +1,58 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+# Movie125
+### based on themoviedb: https://www.themoviedb.org/
+### For dev and API documentation: https://developers.themoviedb.org/3/getting-started/introduction
 ## Screen Shots
 ![ss 1 1](https://user-images.githubusercontent.com/61433385/202997040-c9507ad6-5031-4360-9836-0427fd94c5f7.png)
 ![ss 1 2](https://user-images.githubusercontent.com/61433385/202997623-2d15354e-95e5-43ea-8e4e-af9f7ead3753.png)
 
 ![ss 2](https://user-images.githubusercontent.com/61433385/202996556-e88f0c90-4c9e-4003-995b-e10eb4db92c3.png)
 ![ss 3](https://user-images.githubusercontent.com/61433385/202998231-c7b16f16-3e21-41f8-9956-859ebbf92f40.png)
+
+## Authentication API Documentation
+
+### Users Model:
+  1) first_name: The first name of the user, defined by the user 
+  2) last_name: The last name of the user, defined by the user 
+  3) email: The email of the user, defined by the user 
+  4) password: The password of the user, defined by the user 
+  5) age: The age of the user, defined by the user 
+
+### BASE URL = 'https://route-egypt-api.herokuapp.com';
+
+```
+1- 
+Endpoint: /signup 
+Method: POST 
+JSON Format: 
+{ 
+  "first_name":"Ahmed", 
+  "last_name":"Ali", 
+  "email":"ahmedAli@gmail.com", 
+  "password":"Ahmed@123", 
+  "age":"23" 
+} 
+
+2- 
+Endpoint: /signin 
+Method: POST 
+JSON Format: 
+{ 
+  "email":"ahmedAli@gmail.com", 
+  "password":"Ahmed@123", 
+} 
+
+3- 
+Endpoint: /signOut 
+Method: POST 
+JSON Format: 
+{ 
+  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJf aWQiOiI2MDA1YTA5MjlhMmJiMDA2NzAzM2FhMGYiLCJmaXJzdF9uYW1lIjoiQWhtZWQiLCJsYXN0X25hbWUiOiJBYmQgQWwtTXV0aSIsImVtYWlsIjoiYWhtZWRtdXR0aUBnbWFpbC5jb20iLCJhZ2UiOjIzLCJpYXQiOjE2MTA5ODE2NjR9.En_GnIB7mk7HiaUuedf0c0PseYaaL6prBMF1vn1pyLI", 
+} 
+```
+
+
+# Getting Started with Create React App
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
