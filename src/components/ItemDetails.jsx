@@ -9,6 +9,7 @@ export default function ItemDetails()
 
   async function init()
   {
+    //TODO: filter getDeials by media type
     await MoviesApiHelper.getMovieDetails(params.id).then((value)=>{
       setItemDetails(value);
     });
@@ -16,6 +17,7 @@ export default function ItemDetails()
 
   useEffect(()=>{
     init();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   return (
