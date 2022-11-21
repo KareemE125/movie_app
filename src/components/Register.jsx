@@ -8,7 +8,6 @@ import AuthApiHelper from '../Helpers/AuthApiHelper.js';
 
 export default function Register() {
 
-  let [userForm, setUserForm] = useState(new UserFormModel());
   let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState('');
 
@@ -99,10 +98,11 @@ export default function Register() {
   }
 
   ///////////////........... Update Input Values ...........////////////////
+  let userForm =new UserFormModel();
+
   function updateUserValues(e) {
-    let updatedUserForm = new UserFormModel(...Object.values(userForm));
-    updatedUserForm[e.target.attributes.name.value] = e.target.value;
-    setUserForm(updatedUserForm)
+    userForm[e.target.attributes.name.value] = e.target.value;
+    console.log(userForm)
   }
 
   return <section id='register'>

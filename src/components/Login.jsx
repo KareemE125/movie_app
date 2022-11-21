@@ -8,7 +8,6 @@ import AuthApiHelper from '../Helpers/AuthApiHelper';
 
 export default function Login({ resetAppRouter }) {
 
-  let [userForm, setUserForm] = useState({ "email": null, "password": null });
   let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState('');
   let navigate = useNavigate();
@@ -86,10 +85,11 @@ export default function Login({ resetAppRouter }) {
   }
 
   ///////////////........... Update Input Values ...........////////////////
+  let userForm = { "email": null, "password": null };
+
   function updateUserValues(e) {
-    let updatedUserForm = { ...userForm };
-    updatedUserForm[e.target.attributes.name.value] = e.target.value;
-    setUserForm(updatedUserForm)
+    userForm[e.target.attributes.name.value] = e.target.value;
+    console.log(userForm);
   }
 
 
@@ -97,6 +97,7 @@ export default function Login({ resetAppRouter }) {
     <div className='col-lg-8 m-auto py-5'>
       <h2 className='fw-light'>Login</h2>
       {error ? <div className="validation-card d-block">{error}</div> : null}
+
       <form className='my-4 d-flex flex-column' onSubmit={submitForm} onChange={updateUserValues}>
 
         <div className="position-relative mb-3">
