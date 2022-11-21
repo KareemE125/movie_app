@@ -1,12 +1,11 @@
 import './App.css';
 
-import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider} from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
-import MovieDetails from './components/MovieDetails'
 import NotFound from './components/NotFound'
 import RootLayout from './components/RootLayout';
 import Loading from './components/Loading';
@@ -14,6 +13,7 @@ import Tvs from './components/Tvs';
 import People from './components/People';
 import Movies from './components/Movies';
 import Favorites from './components/Favorites';
+import ItemDetails from './components/ItemDetails';
 
 
 const LOGIN_ROUTE = (resetAppRouter)=> createBrowserRouter([
@@ -26,14 +26,29 @@ const LOGIN_ROUTE = (resetAppRouter)=> createBrowserRouter([
   }
 ]);
 
-const HOME_ROUTE = (resetAppRouter, refreshNavBar)=> createBrowserRouter([
+const HOME_ROUTE = (resetAppRouter)=> createBrowserRouter([
   {
     path: '/', element: <RootLayout resetAppRouter={resetAppRouter}/>, children: [
       { index: true, element: <Home /> },
-      { path: 'movie/:id', element: <MovieDetails /> },
-      { path: 'movies', element: <Movies /> },
-      { path: 'tvs', element: <Tvs /> },
-      { path: 'people', element: <People /> },
+      { path: 'details/:type/:id', element: <ItemDetails /> },
+      { path: '/movies', element: <Outlet></Outlet>, 
+        children:[
+          { index:true, element: <Movies /> },
+          { path: 'details/:type/:id', element: <ItemDetails /> },
+        ] 
+      },
+      { path: '/tvs', element: <Outlet></Outlet>, 
+        children:[
+          { index:true, element: <Tvs /> },
+          { path: 'details/:type/:id', element: <ItemDetails /> },
+        ] 
+      },
+      { path: '/people', element: <Outlet></Outlet>, 
+        children:[
+          { index:true, element: <People /> },
+          { path: 'details/:type/:id', element: <ItemDetails /> },
+        ] 
+      },
       { path: 'favorites', element: <Favorites /> },
       { path: '*', element: <NotFound /> },
     ]

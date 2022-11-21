@@ -1,23 +1,41 @@
 import axios from 'axios';
+import MovieDetails from '../models/ItemDetails';
 import Movie from '../models/Movie';
+import PersonDetails from '../models/PersonDetails';
+import Person from '../models/Person';
+import TvDetails from '../models/TvDetails';
+import Tv from '../models/Tv';
 
 const API_KEY = '596a075b908fc028f46b83b6af60c5dc';
 
 export default class MoviesApiHelper 
 {
     static GENRES = new Map();
+    static MEDIA_TYPE = {
+        Movie: 'movie',
+        Person: 'person',
+        Tv: 'tv'
+    };
 
-    static async getTrendings() {
+
+    static async getTrendings(mediaType) 
+    {
         let response = [];
 
-        await axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`)
+        await axios.get(`https://api.themoviedb.org/3/trending/${mediaType}/week?api_key=${API_KEY}`)
             .then((value) => response = value)
             .catch((error) => console.log("ERROR: " + error));
 
         if (response.data.results === undefined) { return []; }
 
-        let movies = response.data.results.map((movie) => new Movie(movie));
-        return movies;
+        if(mediaType === this.MEDIA_TYPE.Movie)
+        { return response.data.results.map((movie) => new Movie(movie)); }
+        else if(mediaType === this.MEDIA_TYPE.Person)
+        { return response.data.results.map((person) => new Person(person)); }
+        else if(mediaType === this.MEDIA_TYPE.Tv)
+        { return response.data.results.map((tv) => new Tv(tv)); }
+        else{ return null; }
+
     }
 
     static async SetConstants() {
@@ -38,5 +56,43 @@ export default class MoviesApiHelper
         return true;
     }
 
+    static async getMovieDetails(id)
+    {
+        let response = [];
+        
+        await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
+            .then((value) => response = value)
+            .catch((error) => console.log("ERROR: " + error));
+
+        if (response.data === undefined) { return null; }
+
+        return new MovieDetails(response.data);
+    }
+
+    static async getPersonDetails(id)
+    {
+        let response = [];
+
+        await axios.get(`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}`)
+            .then((value) => response = value)
+            .catch((error) => console.log("ERROR: " + error));
+
+        if (response.data === undefined) { return null; }
+
+        return new PersonDetails(response.data);
+    }
+
+    static async getTvDetails(id)
+    {
+        let response = [];
+
+        await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`)
+            .then((value) => response = value)
+            .catch((error) => console.log("ERROR: " + error));
+
+        if (response.data === undefined) { return null; }
+
+        return new TvDetails(response.data);
+    }
 
 }

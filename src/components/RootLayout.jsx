@@ -19,7 +19,7 @@ export default function RootLayout({ resetAppRouter }) {
     for (let i = 0; i < links.length; i++) { links[i]?.classList.remove('active'); }
 
     for (let i = 0; i < links.length; i++) {
-      if (window.location.href.endsWith(links[i]?.innerHTML.toLowerCase())) {
+      if (window.location.href.startsWith('http://localhost:3000/'+links[i]?.innerHTML.toLowerCase())) {
         links[i]?.classList.add('active');
         isHomeLink = false;
       }
@@ -32,7 +32,7 @@ export default function RootLayout({ resetAppRouter }) {
 
   return <>
     <NavBar resetAppRouter={resetAppRouter} />
-    <div className='container'>
+    <div className='mx-3 mx-lg-5'>
       <Outlet></Outlet>
     </div>
     <Footer />

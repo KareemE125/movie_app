@@ -46,9 +46,9 @@ export default function NavBar({ resetAppRouter }) {
           </ul> : null
         }
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-          <div className="d-flex align-items-center flex-wrap">
-            <form className="d-flex align-items-center me-3" role="search">
-              <input className="py-0 px-2 bg-transparent text-white" type="search" placeholder="Search" aria-label="Search" />
+          <div className="d-flex justify-content-end align-items-center flex-wrap">
+            <form className="d-flex align-items-center me-3 col-xl-7 col-lg-6" role="search">
+              <input className="py-0 px-2 bg-transparent text-white w-100" type="search" placeholder="Search" aria-label="Search" />
             </form>
             <div className='d-flex align-items-center py-2 pt-3 py-lg-0 pt-lg-2'>
               <a className='text-decoration-none me-3' target="_blank" href="/"> <i className='fa-brands fa-facebook-f'></i> </a>

@@ -1,17 +1,17 @@
-#Home .movie-card{
+#Home .home-card{
     border-radius: 15px;
     overflow: hidden;
     transition: 0.3s;
     cursor: pointer;
 }
 
-#Home .movie-card:hover{
+#Home .home-card:hover{
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0px 0px 5px 5px var(--a-trans-color);
 }
 
-#Home .movie-card:hover h5{
+#Home .home-card:hover h5{
     color: var(--a-color);
 }
 
@@ -28,11 +28,7 @@
     transition: 0.3s;
 }
 
-@media screen and (max-width:462px) {
-    #Home h5{
-        font-size: 14px;
-    }
-}
+
 
 #Home h6{
     font-size: 14px;
@@ -42,4 +38,39 @@
     padding: 3px 8px;
     top: 15px;
     right: 15px;
+}
+
+#Home .border{
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+#Home h3{
+    color: rgba(255, 255, 255, 0.3) ;
+}
+
+@media screen and (min-width:560px) and (max-width:760px) {
+    #Home h2{
+        font-size: 26px;
+        margin-bottom: 1rem;
+    }
+    
+    #Home h3{
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width:462px) {
+    #Home h5{
+        font-size: 14px;
+    }
+
+    #Home h2{
+        font-size: 26px;
+        margin-bottom: 1rem;
+    }
+
+    #Home h3{
+        font-size: 18px;
+    }
 }
