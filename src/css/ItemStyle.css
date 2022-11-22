@@ -1,0 +1,5 @@
+@media screen and (max-width:768px) {
+    #Item img{
+        max-height: 26rem;
+    }
+}

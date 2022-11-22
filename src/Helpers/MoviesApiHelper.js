@@ -1,5 +1,5 @@
 import axios from 'axios';
-import MovieDetails from '../models/ItemDetails';
+import MovieDetails from '../models/MovieDetails';
 import Movie from '../models/Movie';
 import PersonDetails from '../models/PersonDetails';
 import Person from '../models/Person';
@@ -56,6 +56,7 @@ export default class MoviesApiHelper
         return true;
     }
 
+    /// GET Details [Movie , Person , TV]
     static async getMovieDetails(id)
     {
         let response = [];
