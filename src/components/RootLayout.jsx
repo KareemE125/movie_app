@@ -19,7 +19,7 @@ export default function RootLayout({ resetAppRouter }) {
     for (let i = 0; i < links.length; i++) { links[i]?.classList.remove('active'); }
 
     for (let i = 0; i < links.length; i++) {
-      if (window.location.href.startsWith('http://localhost:3000/'+links[i]?.innerHTML.toLowerCase())) {
+      if (window.location.href.startsWith(('http://localhost:3000/'|'https://kareeme125.github.io/movie_app/')+links[i]?.innerHTML.toLowerCase())) {
         links[i]?.classList.add('active');
         isHomeLink = false;
       }
