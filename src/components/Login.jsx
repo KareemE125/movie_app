@@ -89,7 +89,6 @@ export default function Login({ resetAppRouter }) {
 
   function updateUserValues(e) {
     userForm[e.target.attributes.name.value] = e.target.value;
-    console.log(userForm);
   }
 
 

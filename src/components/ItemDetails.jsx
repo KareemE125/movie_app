@@ -35,12 +35,6 @@ export default function ItemDetails() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(()=>{
-    console.log('====================================');
-    console.log(4444444444);
-    console.log('====================================');
-},[itemDetails])
-
 
   return itemDetails ?
     <section id='Item' className='py-5'>

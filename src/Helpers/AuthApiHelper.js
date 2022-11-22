@@ -15,19 +15,16 @@ export default class AuthApiHelper
             userJsonObject,
         );
 
-        console.log(data.message)
         return data;
     }
 
     static async login(user) 
     {
-        console.log(user);
         let {data} = await axios.post(
             (BASE_URL + 'signin'),
             user,
         );
 
-        console.log(data.message)
         return data;
     }
 

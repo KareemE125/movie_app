@@ -102,7 +102,6 @@ export default function Register() {
 
   function updateUserValues(e) {
     userForm[e.target.attributes.name.value] = e.target.value;
-    console.log(userForm)
   }
 
   return <section id='register'>

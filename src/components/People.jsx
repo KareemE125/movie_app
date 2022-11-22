@@ -27,7 +27,7 @@ export default function People() {
             trendingPersonList.map((person, index) =>
               <div key={index} className='col-6 col-sm-3 col-lg-2'>
                 <Link className='text-decoration-none' to={'details/person/' + person.id}>
-                  <div className=' home-card m-2 position-relative' onClick={() => { console.log('person Clicked') }} >
+                  <div className=' home-card m-2 position-relative'>
                     <img className='img-fluid' src={(person.profilePic.includes("null")) ? 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' : person.profilePic} alt="" />
                     <h5 className='text-center overflow-hidden text-wrap'>
                       {person?.name.length > 30 ? person.name.substr(0, 30) + "..." : person.name}

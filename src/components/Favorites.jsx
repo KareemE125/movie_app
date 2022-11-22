@@ -34,7 +34,7 @@ export default function Favorites()
             User.FavoritesList.map((item, index) =>
               <div key={index} className='col-6 col-sm-3 col-lg-2'>
                 <Link className='text-decoration-none' to={`details/${item.type}/${item.id}`}>
-                  <div className=' home-card m-2 position-relative' onClick={() => { console.log('Movie Clicked') }} >
+                  <div className=' home-card m-2 position-relative'  >
                     <img className='img-fluid' src={item.imgUrl} alt="poster" />
                     <h5 className='text-center overflow-hidden text-wrap'>
                       {item.name?.length > 30 ? item.name.substr(0, 30) + "..." : item.name}

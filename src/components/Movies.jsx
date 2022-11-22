@@ -29,7 +29,7 @@ export default function Movies() {
             trendingMovieList.map((movie, index) =>
               <div key={index} className='col-6 col-sm-3 col-lg-2'>
                 <Link className='text-decoration-none' to={'details/movie/' + movie.id}>
-                  <div className=' home-card m-2 position-relative' onClick={() => { console.log('Movie Clicked') }} >
+                  <div className=' home-card m-2 position-relative'  >
                     <img className='img-fluid' src={movie.poster} alt="" />
                     <h5 className='text-center overflow-hidden text-wrap'>
                       {movie?.title.length > 30 ? movie.title.substr(0, 30) + "..." : movie.title}
