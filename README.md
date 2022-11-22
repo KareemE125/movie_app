@@ -4,12 +4,15 @@
 ## Screen Shots
 ![ss 1 1](https://user-images.githubusercontent.com/61433385/202997040-c9507ad6-5031-4360-9836-0427fd94c5f7.png)
 ![ss 1 2](https://user-images.githubusercontent.com/61433385/202997623-2d15354e-95e5-43ea-8e4e-af9f7ead3753.png)
-
 ![ss 2](https://user-images.githubusercontent.com/61433385/202996556-e88f0c90-4c9e-4003-995b-e10eb4db92c3.png)
 ![ss 3](https://user-images.githubusercontent.com/61433385/202998231-c7b16f16-3e21-41f8-9956-859ebbf92f40.png)
+![ss 7](https://user-images.githubusercontent.com/61433385/203423437-e9f215af-c861-460e-9e65-2cf38c69963b.png)
+![ss 9](https://user-images.githubusercontent.com/61433385/203423454-52ffd90e-7cc5-40b6-80f1-7c04038eec6a.png)
+![ss 8](https://user-images.githubusercontent.com/61433385/203423469-6d354f17-8b15-4bc7-9bb3-d66f723c9747.png)
+![ss 6](https://user-images.githubusercontent.com/61433385/203423474-6058a72c-5ad6-4dc3-ae4e-29a3f03ac8a3.png)
 
 ## Authentication API Documentation
-
+### Note: the Favorites are runtime based & the search in not working as they are not provided by the APIs
 ### Users Model:
   1) first_name: The first name of the user, defined by the user 
   2) last_name: The last name of the user, defined by the user 
