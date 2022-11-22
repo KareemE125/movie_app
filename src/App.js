@@ -17,7 +17,6 @@ import ItemDetails from './components/ItemDetails';
 import jwtDecode from 'jwt-decode';
 import User from './models/User';
 
-import MoviesApiHelper from './Helpers/MoviesApiHelper';
 
 
 const LOGIN_ROUTE = (resetAppRouter) => createBrowserRouter([

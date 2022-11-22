@@ -5,7 +5,6 @@ import PersonDetails from '../models/PersonDetails';
 import Person from '../models/Person';
 import TvDetails from '../models/TvDetails';
 import Tv from '../models/Tv';
-import User from '../models/User';
 
 const API_KEY = '596a075b908fc028f46b83b6af60c5dc';
 
@@ -89,36 +88,36 @@ export default class MoviesApiHelper {
     }
 
     //Favorites
-    static async getAndSetUserFavorites() {
-        await axios.get('https://route-egypt-api.herokuapp.com/getFavorites', {
-            headers: {
-                'token': User.token
-            }
-        }).then((response) => { User.FavoritesList = response.data.Favorites; });
-    }
+    // static async getAndSetUserFavorites() {
+    //     await axios.get('https://route-egypt-api.herokuapp.com/getFavorites', {
+    //         headers: {
+    //             'token': User.token
+    //         }
+    //     }).then((response) => { User.FavoritesList = response.data.Favorites; });
+    // }
 
-    static async addToFavorites(item, refreshFunc) 
-    {
-        let tempItem = {
-            movieName: item.title,
-            imgUrl: item.poster,
-            userID: User.id,
-            movieID: item.id,
-            token: User.token,
-        };
+    // static async addToFavorites(item, refreshFunc) 
+    // {
+    //     let tempItem = {
+    //         movieName: item.title,
+    //         imgUrl: item.poster,
+    //         userID: User.id,
+    //         movieID: item.id,
+    //         token: User.token,
+    //     };
 
-        if(!User.FavoritesList){User.FavoritesList = []; }
-        const tempItemIndex = User.FavoritesList.length;
-        User.FavoritesList.push({movieName: item.name, imgUrl: item.imgUrl, movieID: item.id})
-        refreshFunc();
+    //     if(!User.FavoritesList){User.FavoritesList = []; }
+    //     const tempItemIndex = User.FavoritesList.length;
+    //     User.FavoritesList.push({movieName: item.name, imgUrl: item.imgUrl, movieID: item.id})
+    //     refreshFunc();
 
-        const response = await axios.post('https://route-egypt-api.herokuapp.com/addToFavorites', tempItem);
+    //     const response = await axios.post('https://route-egypt-api.herokuapp.com/addToFavorites', tempItem);
 
-        if(response.data.message !== 'success')
-        {
-            User.FavoritesList.splice(tempItemIndex,1);
-            refreshFunc();
-        }
-    }
+    //     if(response.data.message !== 'success')
+    //     {
+    //         User.FavoritesList.splice(tempItemIndex,1);
+    //         refreshFunc();
+    //     }
+    // }
 
 }

@@ -1,19 +1,14 @@
-import MoviesApiHelper from "../Helpers/MoviesApiHelper";
-
-export default  class User
-{
+export default class User {
     static token;
     static firstName;
     static lastName;
     static email;
     static age;
 
-    // key structure: "id=type" ,  example ==> "8923=movie" 
-    static FavoritesList = null;
-    
+    static FavoritesList = [];
 
-    static setUserData(tokens,decodeResult)
-    {
+
+    static setUserData(tokens, decodeResult) {
         User.token = tokens;
         User.id = decodeResult._id;
         User.firstName = decodeResult.first_name;
@@ -22,20 +17,21 @@ export default  class User
         User.age = decodeResult.age;
     }
 
-    static addToFavorites(item,refreshFunc)
+    static addToFavorites(item, refreshFunc) 
     {
-        MoviesApiHelper.addToFavorites(item,refreshFunc)
+       
+        User.FavoritesList.push({ name: item.name, imgUrl: item.imgUrl, id: item.id, type: item.type })
+        refreshFunc();
+        //MoviesApiHelper.addToFavorites(item,refreshFunc)
     }
 
-    static removeFromFavorites(item,refreshFunc)
-    {
-        const index = User.FavoritesList.findIndex((elem)=> elem.id === item.id);
-        User.FavoritesList.splice(index,1);
+    static removeFromFavorites(item, refreshFunc) {
+        const index = User.FavoritesList.findIndex((elem) => elem.id === item.id);
+        User.FavoritesList.splice(index, 1);
         refreshFunc();
     }
 
-    static clear()
-    {
+    static clear() {
         User.token = null;
         User.id = null;
         User.firstName = null;

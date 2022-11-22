@@ -51,12 +51,12 @@ export default function ItemDetails() {
             <div className='col-md-4 mb-2 ps-0 ps-xl-5 mx-auto position-relative text-center d-flex flex-column'>
               <img className='img-fluid rounded' src={itemDetails.poster} alt="poster" />
               {
-                User.FavoritesList?.find((item)=> item.movieID === itemDetails.id) ?
+                User.FavoritesList?.find((item)=> item.id === itemDetails.id) ?
                   <>
                     <i className='fa fa-bookmark text-danger'></i>
-                    <button className='btn btn-outline-danger mt-3' onClick={()=>{ User.removeFromFavorites({name: itemDetails.title, imgUrl: itemDetails.poster, id: itemDetails.id},()=>{setToggleFav(!toggleFav);});  }}>Remove from Favorites</button>
+                    <button className='btn btn-outline-danger mt-3' onClick={()=>{ User.removeFromFavorites({name: itemDetails.title, imgUrl: itemDetails.poster, id: itemDetails.id, type: params.type},()=>{setToggleFav(!toggleFav);});  }}>Remove from Favorites</button>
                   </>
-                  : <button className='btn btn-outline-warning mt-3' onClick={()=>{ User.addToFavorites({name: itemDetails.title, imgUrl: itemDetails.poster, id: itemDetails.id},()=>{setToggleFav(!toggleFav);}); }}>Add to Favorites</button>
+                  : <button className='btn btn-outline-warning mt-3' onClick={()=>{ User.addToFavorites({name: itemDetails.title, imgUrl: itemDetails.poster, id: itemDetails.id, type: params.type},()=>{setToggleFav(!toggleFav);}); }}>Add to Favorites</button>
               }
             </div>
 
