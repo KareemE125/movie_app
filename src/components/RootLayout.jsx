@@ -19,16 +19,11 @@ export default function RootLayout({ resetAppRouter }) {
     for (let i = 0; i < links.length; i++) { links[i]?.classList.remove('active'); }
 
     for (let i = 0; i < links.length; i++) {
-      if (window.location.href.startsWith('http://localhost:3000/'+links[i]?.innerHTML.toLowerCase())) {
+      if (window.location.href.indexOf('/'+links[i]?.innerHTML.toLowerCase()) !== -1) {
         links[i]?.classList.add('active');
         isHomeLink = false;
       }
-      else if (window.location.href.startsWith('https://kareeme125.github.io/movie_app/'+links[i]?.innerHTML.toLowerCase())) {
-        links[i]?.classList.add('active');
-        isHomeLink = false;
-      }
-      
-
+    
       if (links[i]?.innerHTML.toLowerCase() === 'logout') { links[i]?.classList.remove('active'); }
     }
 
