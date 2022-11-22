@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import '../css/NavBarStyle.css'
+import User from '../models/User';
 
 
 export default function NavBar({ resetAppRouter }) {
@@ -10,7 +11,7 @@ export default function NavBar({ resetAppRouter }) {
 
   function logout() {
     localStorage.removeItem('token');
-
+    User.clear();
     // we navigate to '/' before resetting AppRouter
     // so that after resetting ww will have a vaild route '/' in the url to route to
     navigate('/');

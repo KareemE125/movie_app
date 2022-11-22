@@ -5,11 +5,11 @@ import PersonDetails from '../models/PersonDetails';
 import Person from '../models/Person';
 import TvDetails from '../models/TvDetails';
 import Tv from '../models/Tv';
+import User from '../models/User';
 
 const API_KEY = '596a075b908fc028f46b83b6af60c5dc';
 
-export default class MoviesApiHelper 
-{
+export default class MoviesApiHelper {
     static GENRES = new Map();
     static MEDIA_TYPE = {
         Movie: 'movie',
@@ -17,9 +17,7 @@ export default class MoviesApiHelper
         Tv: 'tv'
     };
 
-
-    static async getTrendings(mediaType) 
-    {
+    static async getTrendings(mediaType) {
         let response = [];
 
         await axios.get(`https://api.themoviedb.org/3/trending/${mediaType}/week?api_key=${API_KEY}`)
@@ -28,13 +26,10 @@ export default class MoviesApiHelper
 
         if (response.data.results === undefined) { return []; }
 
-        if(mediaType === this.MEDIA_TYPE.Movie)
-        { return response.data.results.map((movie) => new Movie(movie)); }
-        else if(mediaType === this.MEDIA_TYPE.Person)
-        { return response.data.results.map((person) => new Person(person)); }
-        else if(mediaType === this.MEDIA_TYPE.Tv)
-        { return response.data.results.map((tv) => new Tv(tv)); }
-        else{ return null; }
+        if (mediaType === this.MEDIA_TYPE.Movie) { return response.data.results.map((movie) => new Movie(movie)); }
+        else if (mediaType === this.MEDIA_TYPE.Person) { return response.data.results.map((person) => new Person(person)); }
+        else if (mediaType === this.MEDIA_TYPE.Tv) { return response.data.results.map((tv) => new Tv(tv)); }
+        else { return null; }
 
     }
 
@@ -57,10 +52,9 @@ export default class MoviesApiHelper
     }
 
     /// GET Details [Movie , Person , TV]
-    static async getMovieDetails(id)
-    {
+    static async getMovieDetails(id) {
         let response = [];
-        
+
         await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
             .then((value) => response = value)
             .catch((error) => console.log("ERROR: " + error));
@@ -70,8 +64,7 @@ export default class MoviesApiHelper
         return new MovieDetails(response.data);
     }
 
-    static async getPersonDetails(id)
-    {
+    static async getPersonDetails(id) {
         let response = [];
 
         await axios.get(`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}`)
@@ -83,8 +76,7 @@ export default class MoviesApiHelper
         return new PersonDetails(response.data);
     }
 
-    static async getTvDetails(id)
-    {
+    static async getTvDetails(id) {
         let response = [];
 
         await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`)
@@ -94,6 +86,39 @@ export default class MoviesApiHelper
         if (response.data === undefined) { return null; }
 
         return new TvDetails(response.data);
+    }
+
+    //Favorites
+    static async getAndSetUserFavorites() {
+        await axios.get('https://route-egypt-api.herokuapp.com/getFavorites', {
+            headers: {
+                'token': User.token
+            }
+        }).then((response) => { User.FavoritesList = response.data.Favorites; });
+    }
+
+    static async addToFavorites(item, refreshFunc) 
+    {
+        let tempItem = {
+            movieName: item.title,
+            imgUrl: item.poster,
+            userID: User.id,
+            movieID: item.id,
+            token: User.token,
+        };
+
+        if(!User.FavoritesList){User.FavoritesList = []; }
+        const tempItemIndex = User.FavoritesList.length;
+        User.FavoritesList.push({movieName: item.name, imgUrl: item.imgUrl, movieID: item.id})
+        refreshFunc();
+
+        const response = await axios.post('https://route-egypt-api.herokuapp.com/addToFavorites', tempItem);
+
+        if(response.data.message !== 'success')
+        {
+            User.FavoritesList.splice(tempItemIndex,1);
+            refreshFunc();
+        }
     }
 
 }

@@ -1,5 +1,18 @@
+#Item i {
+    font-size: 2.5rem;
+    padding-right: 0.6rem;
+    color: rgb(206, 0, 0) !important;
+    position: absolute;
+    top: -1px;
+    right: 0;
+}
+
+#Item button:hover {
+    color: white !important;
+}
+
 @media screen and (max-width:768px) {
-    #Item img{
+    #Item img {
         max-height: 26rem;
     }
 }

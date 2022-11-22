@@ -3,14 +3,16 @@ import { useParams } from 'react-router-dom'
 import MoviesApiHelper from '../Helpers/MoviesApiHelper';
 import Loading from './Loading'
 import '../css/ItemStyle.css'
+import User from '../models/User';
 
 
 export default function ItemDetails() {
   let params = useParams();
   let [itemDetails, setItemDetails] = useState(null);
+  let [toggleFav, setToggleFav] = useState(true);
 
   async function init() {
-    //TODO: filter getDeials by media type
+    
     if (params.type === MoviesApiHelper.MEDIA_TYPE.Movie) {
       await MoviesApiHelper.getMovieDetails(params.id).then((value) => {
         setItemDetails(value);
@@ -33,14 +35,29 @@ export default function ItemDetails() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(()=>{
+    console.log('====================================');
+    console.log(4444444444);
+    console.log('====================================');
+},[itemDetails])
+
+
   return itemDetails ?
     <section id='Item' className='py-5'>
       {
         params.type !== MoviesApiHelper.MEDIA_TYPE.Person ?
           <div className="d-flex flex-wrap gap-3">
 
-            <div className='col-md-4 mb-2 ps-0 ps-xl-5 mx-auto'>
+            <div className='col-md-4 mb-2 ps-0 ps-xl-5 mx-auto position-relative text-center d-flex flex-column'>
               <img className='img-fluid rounded' src={itemDetails.poster} alt="poster" />
+              {
+                User.FavoritesList?.find((item)=> item.movieID === itemDetails.id) ?
+                  <>
+                    <i className='fa fa-bookmark text-danger'></i>
+                    <button className='btn btn-outline-danger mt-3' onClick={()=>{ User.removeFromFavorites({name: itemDetails.title, imgUrl: itemDetails.poster, id: itemDetails.id},()=>{setToggleFav(!toggleFav);});  }}>Remove from Favorites</button>
+                  </>
+                  : <button className='btn btn-outline-warning mt-3' onClick={()=>{ User.addToFavorites({name: itemDetails.title, imgUrl: itemDetails.poster, id: itemDetails.id},()=>{setToggleFav(!toggleFav);}); }}>Add to Favorites</button>
+              }
             </div>
 
             <div className='col-md-7 pt-3 px-sm-5 px-md-0 pe-0 pe-xl-5'>
@@ -63,26 +80,27 @@ export default function ItemDetails() {
                 }
               </div>
             </div>
-          </div> 
+
+          </div>
           : <div className="d-flex flex-wrap gap-3">
 
-          <div className='col-md-4 mb-2 ps-0 ps-xl-5 mx-auto'>
-            <img className='img-fluid rounded' src={itemDetails.profilePic} alt="poster" />
+            <div className='col-md-4 mb-2 ps-0 ps-xl-5 mx-auto'>
+              <img className='img-fluid rounded' src={itemDetails.profilePic} alt="poster" />
+            </div>
+
+            <div className='col-md-7 pt-3 px-sm-5 px-md-0 pe-0 pe-xl-5'>
+              <h2 className='h1 mb-5'>{itemDetails.name}</h2>
+
+              <h5 className='fw-light'>Biography:</h5>
+              <h5 className='fw-light mb-4 text-white-50'>{itemDetails.biography ? itemDetails.biography : 'Not available'}</h5>
+
+              <h5 className='mb-4 fw-light'>Birthay: <span className='text-white-50'>{itemDetails.birthay}</span></h5>
+
+              <h5 className='mb-4 fw-light'>Place Of Birth: <span className='text-white-50'>{itemDetails.placeOfBirth}</span></h5>
+              <h5 className='mb-4 fw-light'>Popularity:  <span className='text-white-50'>{itemDetails.popularity} / 10</span></h5>
+            </div>
           </div>
-
-          <div className='col-md-7 pt-3 px-sm-5 px-md-0 pe-0 pe-xl-5'>
-            <h2 className='h1 mb-5'>{itemDetails.name}</h2>
-
-            <h5 className='fw-light'>Biography:</h5>
-            <h5 className='fw-light mb-4 text-white-50'>{itemDetails.biography?itemDetails.biography:'Not available'}</h5>
-
-            <h5 className='mb-4 fw-light'>Birthay: <span className='text-white-50'>{itemDetails.birthay}</span></h5>
-
-            <h5 className='mb-4 fw-light'>Place Of Birth: <span className='text-white-50'>{itemDetails.placeOfBirth}</span></h5>
-            <h5 className='mb-4 fw-light'>Popularity:  <span className='text-white-50'>{itemDetails.popularity} / 10</span></h5>
-          </div>
-        </div>
-        }
+      }
 
     </section>
     : <Loading />
