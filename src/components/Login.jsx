@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -11,7 +11,7 @@ export default function Login({ resetAppRouter }) {
   let inputEmail = useRef();
   let inputPassword = useRef();
 
-  let inputs = [];
+  let inputs = useMemo(()=>{ return []; },[]);
 
   let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState('');

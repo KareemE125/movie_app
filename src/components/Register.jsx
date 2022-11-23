@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import UserFormModel from '../models/UserFormModel.js'
 
 import '../css/RegisterStyle.css'
@@ -15,7 +15,7 @@ export default function Register() {
   let inputPassword = useRef();
   let inputConfirmPassword = useRef();
 
-  let inputs = [];
+  let inputs = useMemo(()=>{ return []; },[]);
 
   let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState('');
