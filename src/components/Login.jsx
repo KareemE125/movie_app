@@ -19,6 +19,7 @@ export default function Login({ resetAppRouter }) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     inputs = [inputEmail.current, inputPassword.current];
     validateInputs();
   }, []);

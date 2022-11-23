@@ -22,8 +22,8 @@ export default function Register() {
 
   let navigate = useNavigate();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     inputs = [inputFirstName.current, inputLastName.current, inputEmail.current, inputAge.current, inputPassword.current, inputConfirmPassword.current];
     validateInputs();
   }, []);
