@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 import '../css/NavBarStyle.css'
 import User from '../models/User';
@@ -22,7 +22,7 @@ export default function NavBar({ resetAppRouter }) {
 
   return <nav className="navbar navbar-expand-lg">
     <div className="container-fluid px-4">
-      <Link id='logo' className="navbar-brand" to='/'>Movies125</Link>
+      <NavLink id='logo' className="navbar-brand" to='/'>Movies125</NavLink>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i className='fa fa-bars'></i>
       </button>
@@ -30,19 +30,19 @@ export default function NavBar({ resetAppRouter }) {
         {
           localStorage.getItem('token') ? <ul className="navbar-nav px-2 ms-lg-3 mb-2 me-auto mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to='/'>Home</Link>
+              <NavLink className="nav-link" aria-current="page" to='/'>Home</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to='/movies'>Movies</Link>
+              <NavLink className="nav-link" to='/movies'>Movies</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to='/tvs'>TVs</Link>
+              <NavLink className="nav-link" to='/tvs'>TVs</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to='/people'>People</Link>
+              <NavLink className="nav-link" to='/people'>People</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to='/favorites'>Favorites</Link>
+              <NavLink className="nav-link" to='/favorites'>Favorites</NavLink>
             </li>
           </ul> : null
         }
