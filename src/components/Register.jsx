@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import UserFormModel from '../models/UserFormModel.js'
 
 import '../css/RegisterStyle.css'
@@ -8,20 +8,30 @@ import AuthApiHelper from '../Helpers/AuthApiHelper.js';
 
 export default function Register() {
 
+  let inputFirstName = useRef();
+  let inputLastName = useRef();
+  let inputEmail = useRef();
+  let inputAge = useRef();
+  let inputPassword = useRef();
+  let inputConfirmPassword = useRef();
+
+  let inputs = [];
+
   let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState('');
 
   let navigate = useNavigate();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(validateInputs, []);
+  useEffect(() => {
+    inputs = [inputFirstName.current, inputLastName.current, inputEmail.current, inputAge.current, inputPassword.current, inputConfirmPassword.current];
+    validateInputs();
+  }, []);
 
   ///////////////........... Sumbmission & APIS ............////////////////
   async function submitForm(e) {
     e.preventDefault();
     setError('');
-
-    const inputs = document.querySelectorAll('#register input');
 
     for (let i = 0; i < inputs.length; i++) {
       if (!inputs[i].classList.contains('valid')) { nonValidHandler(inputs[i]); return; }
@@ -32,7 +42,7 @@ export default function Register() {
 
   async function handleSignupRequest() {
     setIsLoading(true);
-    
+
     const response = await AuthApiHelper.signup(userForm);
 
     if (response.message === 'success') { navigate('/'); }
@@ -98,7 +108,7 @@ export default function Register() {
   }
 
   ///////////////........... Update Input Values ...........////////////////
-  let userForm =new UserFormModel();
+  let userForm = new UserFormModel();
 
   function updateUserValues(e) {
     userForm[e.target.attributes.name.value] = e.target.value;
@@ -114,7 +124,7 @@ export default function Register() {
           <i className="fa fa-check bg-green"></i>
           <i className="fa fa-close bg-red"></i>
           <label className='fw-light' htmlFor="first_name">First Name :</label>
-          <input className='form-control mt-2 mb-1' type="text" name='first_name' />
+          <input ref={inputFirstName} className='form-control mt-2 mb-1' type="text" name='first_name' />
           <div className="validation-card">"Your first name should have at least 3 characters."</div>
         </div>
 
@@ -122,7 +132,7 @@ export default function Register() {
           <i className="fa fa-check bg-green"></i>
           <i className="fa fa-close bg-red"></i>
           <label className='fw-light' htmlFor="last_name">Last Name :</label>
-          <input className='form-control mt-2 mb-1' type="text" name='last_name' />
+          <input ref={inputLastName} className='form-control mt-2 mb-1' type="text" name='last_name' />
           <div className="validation-card">"Your last name should have at least 3 characters."</div>
         </div>
 
@@ -130,7 +140,7 @@ export default function Register() {
           <i className="fa fa-check bg-green"></i>
           <i className="fa fa-close bg-red"></i>
           <label className='fw-light' htmlFor="email">Email :</label>
-          <input className='form-control mt-2 mb-1' type="email" name='email' />
+          <input ref={inputEmail} className='form-control mt-2 mb-1' type="email" name='email' />
           <div className="validation-card">"You should enter a valid email."</div>
         </div>
 
@@ -138,7 +148,7 @@ export default function Register() {
           <i className="fa fa-check bg-green"></i>
           <i className="fa fa-close bg-red"></i>
           <label className='fw-light' htmlFor="age">Age :</label>
-          <input className='form-control mt-2 mb-1' type="text" name='age' />
+          <input ref={inputAge} className='form-control mt-2 mb-1' type="text" name='age' />
           <div className="validation-card">"You should enter a valid age."</div>
         </div>
 
@@ -146,7 +156,7 @@ export default function Register() {
           <i className="fa fa-check bg-green"></i>
           <i className="fa fa-close bg-red"></i>
           <label className='fw-light' htmlFor="password">Password :</label>
-          <input className='form-control mt-2 mb-1' type="password" name='password' />
+          <input ref={inputPassword} className='form-control mt-2 mb-1' type="password" name='password' />
           <div className="validation-card">"Your name should have at least 8 characters, 1 UPPERCASE, 1 lowercase, 1 number, 1 $peci@l ch@r@cter."</div>
         </div>
 
@@ -154,7 +164,7 @@ export default function Register() {
           <i className="fa fa-check bg-green"></i>
           <i className="fa fa-close bg-red"></i>
           <label className='fw-light' htmlFor="confirmPassword">Confirm Password :</label>
-          <input className='form-control mt-2 mb-1' type="password" name='confirmPassword' />
+          <input ref={inputConfirmPassword} className='form-control mt-2 mb-1' type="password" name='confirmPassword' />
           <div className="validation-card">"You should have matched passwords."</div>
         </div>
 

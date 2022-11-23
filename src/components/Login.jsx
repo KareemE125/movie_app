@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -8,21 +8,29 @@ import AuthApiHelper from '../Helpers/AuthApiHelper';
 
 export default function Login({ resetAppRouter }) {
 
+  let inputEmail = useRef();
+  let inputPassword = useRef();
+
+  let inputs = [];
+
   let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState('');
   let navigate = useNavigate();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(validateInputs, []);
+  useEffect(()=>{
+    inputs = [inputEmail.current, inputPassword.current];
+    validateInputs();
+  }, []);
 
   ///////////////........... Sumbmission & APIS ............////////////////
-  async function submitForm(e) {
+  async function submitForm(e) 
+  {
     e.preventDefault();
     setError('');
 
-    const inputs = document.querySelectorAll('#register input');
-
-    for (let i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < inputs.length; i++) 
+    {
       if (!inputs[i].classList.contains('valid')) { nonValidHandler(inputs[i]); return; }
     }
 
@@ -65,8 +73,6 @@ export default function Login({ resetAppRouter }) {
   }
 
   function validateInputs() {
-    const inputs = document.querySelectorAll('#login input');
-
     const emailRegex = /^.+@[a-zA-Z]+(\.[a-zA-Z]+)+$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/;
 
@@ -75,7 +81,8 @@ export default function Login({ resetAppRouter }) {
       'password': passwordRegex,
     }
 
-    for (let i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < inputs.length; i++) 
+    {
       inputs[i].addEventListener('input', (elem) => {
         if (regexMap[elem.target.attributes.name.value].test(elem.target.value)) { validHandler(elem.target); }
         else { nonValidHandler(elem.target); }
@@ -103,7 +110,7 @@ export default function Login({ resetAppRouter }) {
           <i className="fa fa-check bg-green"></i>
           <i className="fa fa-close bg-red"></i>
           <label className='fw-light' htmlFor="email">Email :</label>
-          <input className='form-control mt-2 mb-1' type="email" name='email' />
+          <input ref={inputEmail} className='form-control mt-2 mb-1' type="email" name='email' />
           <div className="validation-card">"You should enter a valid email."</div>
         </div>
 
@@ -111,7 +118,7 @@ export default function Login({ resetAppRouter }) {
           <i className="fa fa-check bg-green"></i>
           <i className="fa fa-close bg-red"></i>
           <label className='fw-light' htmlFor="password">Password :</label>
-          <input className='form-control mt-2 mb-1' type="password" name='password' />
+          <input ref={inputPassword} className='form-control mt-2 mb-1' type="password" name='password' />
           <div className="validation-card">"Your name should have at least 8 characters, 1 UPPERCASE, 1 lowercase, 1 number, 1 $peci@l ch@r@cter."</div>
         </div>
 
