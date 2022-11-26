@@ -4,11 +4,11 @@ import Footer from './Footer'
 import NavBar from './NavBar'
 
 
-export default function RootLayout({ resetAppRouter })
+export default function RootLayout()
 {
 
   return <>
-    <NavBar resetAppRouter={resetAppRouter} />
+    <NavBar/>
     <div className='mx-3 mx-lg-5'>
       <Outlet></Outlet>
     </div>

@@ -1,14 +1,13 @@
 import './App.css';
 
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import NotFound from './components/NotFound'
 import RootLayout from './components/RootLayout';
-import Loading from './components/Loading';
 import Tvs from './components/Tvs';
 import People from './components/People';
 import Movies from './components/Movies';
@@ -16,22 +15,23 @@ import Favorites from './components/Favorites';
 import ItemDetails from './components/ItemDetails';
 import jwtDecode from 'jwt-decode';
 import User from './models/User';
+import { AuthContext } from './Context/AuthContext';
 
 
 
-const LOGIN_ROUTE = (resetAppRouter) => createBrowserRouter([
+const LOGIN_ROUTE = createBrowserRouter([
   {
-    path: '/', element: <RootLayout resetAppRouter={resetAppRouter} />, children: [
-      { index: true, element: <Login resetAppRouter={resetAppRouter} /> },
+    path: '/', element: <RootLayout/>, children: [
+      { index: true, element: <Login/> },
       { path: 'register', element: <Register /> },
       { path: '*', element: <NotFound /> },
     ]
   }
 ]);
 
-const HOME_ROUTE = (resetAppRouter) => createBrowserRouter([
+const HOME_ROUTE = createBrowserRouter([
   {
-    path: '/', element: <RootLayout resetAppRouter={resetAppRouter} />, children: [
+    path: '/', element: <RootLayout/>, children: [
       { index: true, element: <Home /> },
       { path: 'details/:type/:id', element: <ItemDetails /> },
       {
@@ -68,36 +68,31 @@ const HOME_ROUTE = (resetAppRouter) => createBrowserRouter([
 ]);
 
 
-export default function App() {
-
-  let [AppRouter, setAppRouter] = useState(createBrowserRouter([{ path: '/', element: <Loading /> }]));
-
-
-  function resetAppRouter() {
+export default function App() 
+{
+  const authContext = useContext(AuthContext);
+  
+  function init() 
+  {
     const token = localStorage.getItem('token');
-    if (token) {
-      setAppRouter(HOME_ROUTE(resetAppRouter));
 
+    if (token) 
+    {
       const decodeResult = jwtDecode(token);
       User.setUserData(token, decodeResult);
-
-      //MoviesApiHelper.getAndSetUserFavorites().then(() => { console.log("Get & Set User Favorites") });
+      authContext.changeAuthStauts(true);
     }
-    else { setAppRouter(LOGIN_ROUTE(resetAppRouter)); }
+    else { authContext.changeAuthStauts(false); }
   }
 
-
   useEffect(() => {
-    resetAppRouter();
-
+    init();
+    console.log('====================================');
     console.log("DID APP MOUNT");
+    console.log('====================================');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    console.log("DID APP UPDATE");
-  }, [AppRouter]);
-
-
-  return <RouterProvider router={AppRouter} />;
+  return <RouterProvider router={authContext.isLoggedIn? HOME_ROUTE: LOGIN_ROUTE} />
+  
 }

@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../Context/AuthContext';
 
 import '../css/NavBarStyle.css'
 import User from '../models/User';
 
 
-export default function NavBar({ resetAppRouter }) {
+export default function NavBar() {
 
   let navigate = useNavigate();
+  const {changeAuthStauts} = useContext(AuthContext);
 
   function logout() {
     localStorage.removeItem('token');
@@ -16,7 +18,7 @@ export default function NavBar({ resetAppRouter }) {
     // so that after resetting ww will have a vaild route '/' in the url to route to
     navigate('/');
 
-    resetAppRouter();
+    changeAuthStauts(false);
   }
 
 

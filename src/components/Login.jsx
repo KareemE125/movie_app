@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 
 
 import '../css/LoginStyle.css'
 import AuthApiHelper from '../Helpers/AuthApiHelper';
 
 
-export default function Login({ resetAppRouter }) {
+export default function Login() {
 
   let inputEmail = useRef();
   let inputPassword = useRef();
@@ -16,7 +17,7 @@ export default function Login({ resetAppRouter }) {
   let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState('');
   let navigate = useNavigate();
-
+  const {changeAuthStauts} = useContext(AuthContext)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,7 +50,7 @@ export default function Login({ resetAppRouter }) {
       // so that after resetting we will have a vaild route '/' in the url to route to
       navigate('/');
 
-      resetAppRouter();
+      changeAuthStauts(true);
     }
     else { setError(response.message); }
 
