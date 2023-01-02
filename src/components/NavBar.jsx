@@ -30,7 +30,8 @@ export default function NavBar() {
       </button>
       <div className="collapse navbar-collapse mt-3 mt-lg-0" id="navbarSupportedContent">
         {
-          localStorage.getItem('token') ? <ul className="navbar-nav px-2 ms-lg-3 mb-2 me-auto mb-lg-0">
+//          localStorage.getItem('token') &&
+          <ul className="navbar-nav px-2 ms-lg-3 mb-2 me-auto mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to='/'>Home</NavLink>
             </li>
@@ -46,7 +47,7 @@ export default function NavBar() {
             <li className="nav-item">
               <NavLink className="nav-link" to='/favorites'>Favorites</NavLink>
             </li>
-          </ul> : null
+          </ul>
         }
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
           <div className="d-flex justify-content-end align-items-center flex-wrap">
@@ -60,7 +61,7 @@ export default function NavBar() {
               <a className='text-decoration-none me-3' target="_blank" href="/"> <i className='fa-brands fa-youtube'></i> </a>
             </div>
           </div>
-          {
+          {/* {
             !localStorage.getItem('token') ? <>
               <li className="nav-item">
                 <Link className="nav-link" to='/'>Login</Link>
@@ -74,7 +75,7 @@ export default function NavBar() {
                   <Link id='logout' className="nav-link" to='/' onClick={logout} >Logout</Link>
                 </li>
               </>
-          }
+          } */}
 
         </ul>
       </div>
