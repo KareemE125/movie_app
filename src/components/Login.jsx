@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
@@ -18,9 +19,8 @@ export default function Login() {
   let [error, setError] = useState('');
   let navigate = useNavigate();
   const {changeAuthStauts} = useContext(AuthContext)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(()=>{
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     inputs = [inputEmail.current, inputPassword.current];
     validateInputs();
   }, []);
