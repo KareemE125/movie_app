@@ -86,7 +86,7 @@ export default function App()
 //   }
 
   useEffect(() => {
-    init();
+//    init();
     console.log('====================================');
     console.log("DID APP MOUNT");
     console.log('====================================');
