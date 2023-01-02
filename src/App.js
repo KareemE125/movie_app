@@ -70,20 +70,20 @@ const HOME_ROUTE = createBrowserRouter([
 
 export default function App() 
 {
-  const authContext = useContext(AuthContext);
+//   const authContext = useContext(AuthContext);
   
-  function init() 
-  {
-    const token = localStorage.getItem('token');
+//   function init() 
+//   {
+//     const token = localStorage.getItem('token');
 
-    if (token) 
-    {
-      const decodeResult = jwtDecode(token);
-      User.setUserData(token, decodeResult);
-      authContext.changeAuthStauts(true);
-    }
-    else { authContext.changeAuthStauts(false); }
-  }
+//     if (token) 
+//     {
+//       const decodeResult = jwtDecode(token);
+//       User.setUserData(token, decodeResult);
+//       authContext.changeAuthStauts(true);
+//     }
+//     else { authContext.changeAuthStauts(false); }
+//   }
 
   useEffect(() => {
     init();
@@ -93,6 +93,7 @@ export default function App()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <RouterProvider router={authContext.isLoggedIn? HOME_ROUTE: LOGIN_ROUTE} />
-  
+//  return <RouterProvider router={authContext.isLoggedIn? HOME_ROUTE: LOGIN_ROUTE} />
+    return <RouterProvider router={HOME_ROUTE} />
+
 }
